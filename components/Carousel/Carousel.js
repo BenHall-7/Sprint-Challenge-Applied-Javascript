@@ -17,3 +17,43 @@
     <div class="right-button"> > </div>
   </div>
 */
+function createCarousel() {
+  let carousel = document.createElement("div");
+  let left = document.createElement("div");
+  let img1 = document.createElement("img");
+  let img2 = document.createElement("img");
+  let img3 = document.createElement("img");
+  let img4 = document.createElement("img");
+  let right = document.createElement("div");
+
+  carousel.classList.add("carousel");
+  left.classList.add("left-button");
+  right.classList.add("right-button");
+  img1.setAttribute("src", "./assets/carousel/mountains.jpeg");
+  img2.setAttribute("src", "./assets/carousel/computer.jpeg");
+  img3.setAttribute("src", "./assets/carousel/trees.jpeg");
+  img4.setAttribute("src", "./assets/carousel/turntable.jpeg");
+  left.textContent = " < ";
+  right.textContent = " > ";
+
+  carousel.append(left, img1, img2, img3, img4, right);
+
+  left.addEventListener("click", ev => {
+    let firstSrc = img1.src;
+    img1.src = img2.src;
+    img2.src = img3.src;
+    img3.src = img4.src;
+    img4.src = firstSrc;
+  });
+  right.addEventListener("click", ev => {
+    let lastSrc = img4.src;
+    img4.src = img3.src;
+    img3.src = img2.src;
+    img2.src = img1.src;
+    img1.src = lastSrc;
+  })
+
+  return carousel;
+}
+
+document.querySelector(".carousel-container").append(createCarousel());
